@@ -45,42 +45,14 @@
     .selected-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; min-height: 10px; }
     .tag { font-size: 12px; padding: 5px 10px; background: #e8f3fd; border: 1px solid #b5d4f4; border-radius: 20px; color: #185fa5; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
     .tag button { background: none; border: none; cursor: pointer; color: #378add; font-size: 15px; padding: 0; line-height: 1; }
-
-    /* 라디오 버튼 - 핵심 수정 */
     .radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-    .radio-item {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px 14px;
-      border: 1.5px solid #e8e8e8;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-      background: #fafafa;
-      width: 100%;
-    }
+    .radio-item { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1.5px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; background: #fafafa; width: 100%; }
     .radio-item:hover { border-color: #0f7be8; background: #f0f7ff; }
     .radio-item.selected { border-color: #0f7be8; background: #e8f3fd; }
-    .radio-item input[type="radio"] {
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      accent-color: #0f7be8;
-      cursor: pointer;
-    }
-    .radio-item .radio-text {
-      font-size: 13px;
-      color: #333;
-      line-height: 1.6;
-      word-break: keep-all;
-      flex: 1;
-    }
+    .radio-item input[type="radio"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; accent-color: #0f7be8; cursor: pointer; }
+    .radio-item .radio-text { font-size: 13px; color: #333; line-height: 1.6; word-break: keep-all; flex: 1; }
     .radio-item.selected .radio-text { color: #185fa5; font-weight: 500; }
     .survey-note { font-size: 11px; color: #aaa; margin-top: 8px; line-height: 1.5; }
-
     .submit-btn { width: 100%; padding: 15px; background: #0f7be8; color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 1.5rem; font-family: inherit; transition: background 0.15s, transform 0.1s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .submit-btn:hover { background: #0d6fd0; }
     .submit-btn:active { transform: scale(0.99); }
@@ -117,12 +89,7 @@
     <div class="section-label">사업자 정보</div>
     <div class="field">
       <label>사업자 구분 <span class="req">*</span></label>
-      <select id="bizType">
-        <option value="">선택해주세요</option>
-        <option>개인</option>
-        <option>간이</option>
-        <option>법인</option>
-      </select>
+      <select id="bizType"><option value="">선택해주세요</option><option>개인</option><option>간이</option><option>법인</option></select>
     </div>
     <div class="field">
       <label>상호명 <span class="req">*</span></label>
@@ -169,9 +136,7 @@
     <p class="region-sublabel">가능하신 지역 모두 선택해주세요</p>
     <div class="sido-tabs" id="sidoTabs"></div>
     <div class="sigungu-wrap">
-      <div class="sigungu-grid" id="sigunguGrid">
-        <span class="sigungu-empty">위에서 시/도를 선택해주세요</span>
-      </div>
+      <div class="sigungu-grid" id="sigunguGrid"><span class="sigungu-empty">위에서 시/도를 선택해주세요</span></div>
     </div>
     <div class="selected-tags" id="selectedTags"></div>
   </div>
@@ -207,7 +172,7 @@
           <span class="radio-text">기타 (담당자와 통화 시 말씀드릴게요)</span>
         </div>
       </div>
-      <p class="survey-note">어떤 답변이든 파트너 심사에 전혀 영향을 주지 않으니 편하게 선택해주세요!</p>
+      <p class="survey-note">😊 어떤 답변이든 파트너 심사에 전혀 영향을 주지 않으니 편하게 선택해주세요!</p>
     </div>
   </div>
 
@@ -226,7 +191,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSK7CG6MhS6ZI9Gwd0X6GngLU98OfOF48CZHjmNiyfZFAlz-bWO7zsMMMNSvNORrWU/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbN_CSLDN5KXLtGXCDGkD_pg_pQAjtQIEAdWFe2Kh9mBp4eyxJNxoKo-jJebk5fZFU/exec";
 
 const regionData = {
   "서울": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
