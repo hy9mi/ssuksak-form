@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>쓱싹 전문가 파트너 상담 신청</title>
+  <title>쓱싹 전문가 파트너 지원하기</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #f5f6f8; color: #1a1a1a; min-height: 100vh; padding: 2rem 1rem 4rem; }
@@ -13,7 +13,6 @@
     .brand-icon svg { width: 24px; height: 24px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .brand-title { font-size: 20px; font-weight: 700; color: #1a1a1a; }
     .brand-sub { font-size: 12px; color: #888; margin-top: 2px; }
-    .season-notice { font-size: 11px; color: #888; margin-bottom: 1.5rem; padding-left: 2px; line-height: 1.6; }
     .intro-card { background: #e8f3fd; border-radius: 14px; padding: 1rem 1.25rem; margin-bottom: 2rem; border: 1px solid #b5d4f4; }
     .intro-card p { font-size: 13px; color: #185fa5; line-height: 1.7; }
     .card { background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
@@ -29,6 +28,30 @@
     .field .hint { font-size: 11px; color: #aaa; margin-top: 5px; line-height: 1.5; }
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+
+    /* 카테고리 */
+    .cat-label { font-size: 13px; font-weight: 600; color: #333; margin-bottom: 4px; display: block; }
+    .cat-label .req { color: #e24b4a; margin-left: 2px; }
+    .cat-sublabel { font-size: 12px; color: #888; margin-bottom: 12px; }
+    .cat-section { margin-bottom: 16px; }
+    .cat-section:last-child { margin-bottom: 0; }
+    .cat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer; user-select: none; }
+    .cat-header-check { width: 18px; height: 18px; border: 2px solid #ccc; border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; background: white; }
+    .cat-header-check.checked { background: #0f7be8; border-color: #0f7be8; }
+    .cat-header-check svg { width: 11px; height: 11px; stroke: white; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; display: none; }
+    .cat-header-check.checked svg { display: block; }
+    .cat-header-name { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+    .cat-header-badge { font-size: 11px; padding: 2px 8px; background: #f0f0f0; border-radius: 20px; color: #777; }
+    .cat-header-badge.active { background: #e8f3fd; color: #185fa5; }
+    .cat-items { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; background: #fafafa; border: 1.5px solid #e8e8e8; border-radius: 10px; }
+    .cat-chip { font-size: 12px; padding: 6px 12px; border-radius: 8px; border: 1.5px solid #e8e8e8; background: white; color: #555; cursor: pointer; transition: all 0.15s; font-family: inherit; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .cat-chip:hover { border-color: #0f7be8; color: #0f7be8; }
+    .cat-chip.selected { background: #e8f3fd; border-color: #0f7be8; color: #185fa5; font-weight: 500; }
+    .cat-divider { height: 1px; background: #f0f0f0; margin: 12px 0; }
+    .cat-error { font-size: 11px; color: #e24b4a; margin-top: 6px; display: none; }
+    .cat-error.show { display: block; }
+
+    /* 지역 */
     .region-label { font-size: 13px; font-weight: 600; color: #333; display: block; margin-bottom: 4px; }
     .region-label .req { color: #e24b4a; margin-left: 2px; }
     .region-sublabel { font-size: 12px; color: #888; margin-bottom: 10px; }
@@ -45,6 +68,8 @@
     .selected-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; min-height: 10px; }
     .tag { font-size: 12px; padding: 5px 10px; background: #e8f3fd; border: 1px solid #b5d4f4; border-radius: 20px; color: #185fa5; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
     .tag button { background: none; border: none; cursor: pointer; color: #378add; font-size: 15px; padding: 0; line-height: 1; }
+
+    /* 라디오 */
     .radio-group { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
     .radio-item { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1.5px solid #e8e8e8; border-radius: 10px; cursor: pointer; transition: border-color 0.15s, background 0.15s; background: #fafafa; width: 100%; }
     .radio-item:hover { border-color: #0f7be8; background: #f0f7ff; }
@@ -53,6 +78,8 @@
     .radio-item .radio-text { font-size: 13px; color: #333; line-height: 1.6; word-break: keep-all; flex: 1; }
     .radio-item.selected .radio-text { color: #185fa5; font-weight: 500; }
     .survey-note { font-size: 11px; color: #aaa; margin-top: 8px; line-height: 1.5; }
+
+    /* 제출 */
     .submit-btn { width: 100%; padding: 15px; background: #0f7be8; color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 1.5rem; font-family: inherit; transition: background 0.15s, transform 0.1s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .submit-btn:hover { background: #0d6fd0; }
     .submit-btn:active { transform: scale(0.99); }
@@ -79,12 +106,11 @@
     </div>
   </div>
 
-  <p class="season-notice">🌀 현재 성수기를 맞아 에어컨 클리닝 전문가님을 먼저 모집 중입니다. 이후 다른 서비스 분야도 순차적으로 모집이 진행될 예정이니 많은 관심 부탁드립니다.</p>
-
   <div class="intro-card">
-    <p>유선으로 안내드린 양식입니다.<br>정확한 정보를 입력해주시면 담당자가 검토 후 연락드리겠습니다.</p>
+    <p>전문가 파트너 지원 양식입니다.<br>정확한 정보를 입력해주시면 담당자가 검토 후 연락드리겠습니다.</p>
   </div>
 
+  <!-- 사업자 정보 -->
   <div class="card">
     <div class="section-label">사업자 정보</div>
     <div class="field">
@@ -101,7 +127,7 @@
     </div>
     <div class="row2">
       <div class="field">
-        <label>사업자 등록 대표자 성함 <span class="req">*</span></label>
+        <label>대표자 성함 <span class="req">*</span></label>
         <input type="text" id="ownerName" placeholder="대표자 성함" />
       </div>
       <div class="field">
@@ -111,25 +137,76 @@
     </div>
   </div>
 
+  <!-- 전문가 정보 -->
   <div class="card">
     <div class="section-label">전문가 정보</div>
     <div class="row2">
       <div class="field">
-        <label>신청 전문가님 직함 <span class="req">*</span></label>
+        <label>직함 <span class="req">*</span></label>
         <input type="text" id="jobTitle" placeholder="예) 대표, 팀장, 기사" />
       </div>
       <div class="field">
-        <label>대표님 연락처 <span class="req">*</span></label>
+        <label>연락처 <span class="req">*</span></label>
         <input type="tel" id="phone" placeholder="010-0000-0000" />
       </div>
     </div>
     <div class="field">
-      <label>사업자 소속 활동 전문가수 <span class="req">*</span></label>
+      <label>활동 전문가 수 <span class="req">*</span></label>
       <input type="number" id="headcount" placeholder="팀 전체 인원수" min="1" />
-      <p class="hint">팀으로 움직이실 예정이시면 모든 인원을 포함한 숫자를 적어주세요.</p>
+      <p class="hint">팀으로 활동하실 경우 모든 인원을 포함한 숫자를 적어주세요.</p>
     </div>
   </div>
 
+  <!-- 서비스 카테고리 -->
+  <div class="card">
+    <div class="section-label">서비스 카테고리</div>
+    <span class="cat-label">가능한 서비스 항목 <span class="req">*</span></span>
+    <p class="cat-sublabel">해당되는 항목을 모두 선택해주세요</p>
+
+    <!-- 설치/시공 -->
+    <div class="cat-section">
+      <div class="cat-header" onclick="toggleCatAll('install')">
+        <div class="cat-header-check" id="installHeaderCheck">
+          <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <span class="cat-header-name">🔧 설치/시공</span>
+        <span class="cat-header-badge" id="installBadge">0개 선택</span>
+      </div>
+      <div class="cat-items" id="installItems"></div>
+    </div>
+
+    <div class="cat-divider"></div>
+
+    <!-- 클리닝 -->
+    <div class="cat-section">
+      <div class="cat-header" onclick="toggleCatAll('cleaning')">
+        <div class="cat-header-check" id="cleaningHeaderCheck">
+          <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <span class="cat-header-name">🧹 클리닝</span>
+        <span class="cat-header-badge" id="cleaningBadge">0개 선택</span>
+      </div>
+      <div class="cat-items" id="cleaningItems"></div>
+    </div>
+
+    <div class="cat-divider"></div>
+
+    <!-- 막힘해결 -->
+    <div class="cat-section">
+      <div class="cat-header" onclick="toggleCatAll('drain')">
+        <div class="cat-header-check" id="drainHeaderCheck">
+          <svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <span class="cat-header-name">🚿 막힘해결</span>
+        <span class="cat-header-badge" id="drainBadge">0개 선택</span>
+      </div>
+      <div class="cat-items" id="drainItems"></div>
+    </div>
+
+    <div class="cat-error" id="catError">서비스 항목을 1개 이상 선택해주세요.</div>
+  </div>
+
+  <!-- 활동 지역 -->
   <div class="card">
     <div class="section-label">활동 지역</div>
     <label class="region-label">관할 지역 <span class="req">*</span></label>
@@ -141,15 +218,17 @@
     <div class="selected-tags" id="selectedTags"></div>
   </div>
 
+  <!-- 서비스 정보 -->
   <div class="card">
     <div class="section-label">서비스 정보</div>
     <div class="field">
-      <label>불가능한 에어컨 품목</label>
-      <textarea id="unavailable" placeholder="예) 삼성 미켈란젤로 불가, LG 오브제 불가, 에어컨 분해 불가&#10;또는 스탠드만 가능 등 자유롭게 입력해주세요"></textarea>
+      <label>불가능한 작업 또는 특이사항</label>
+      <textarea id="unavailable" placeholder="예) 삼성 미켈란젤로 에어컨 불가, 아파트 15층 이상 작업 불가&#10;또는 특정 브랜드/모델 제한 등 자유롭게 입력해주세요"></textarea>
       <p class="hint">없으시면 비워두셔도 됩니다.</p>
     </div>
   </div>
 
+  <!-- 추가 정보 -->
   <div class="card">
     <div class="section-label">추가 정보</div>
     <div class="field">
@@ -178,7 +257,7 @@
 
   <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    상담 신청하기
+    지원 신청하기
   </button>
 </div>
 
@@ -191,8 +270,95 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbN_CSLDN5KXLtGXCDGkD_pg_pQAjtQIEAdWFe2Kh9mBp4eyxJNxoKo-jJebk5fZFU/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKqqRM7wpi3DMkxCkHOsN_rK4DP9b1aNm0F3vkB2iQMrnxF5F5HcN6OcML3hqLQ2Rq/exec";
 
+// 카테고리 데이터
+const categories = {
+  install: {
+    label: '설치/시공',
+    items: ['에어컨 설치', '벽걸이TV 설치', '보일러/온수기 설치', '도어락 설치', '주방후드 설치', '방충망 교체/시공', '전기/조명시공', '수도 교체/설치', '미끄럼방지 시공']
+  },
+  cleaning: {
+    label: '클리닝',
+    items: ['에어컨 청소', '입주/이사 청소', '세탁기 청소', '냉장고 청소', '매트리스 청소', '소파/카펫 청소', '유리창 청소']
+  },
+  drain: {
+    label: '막힘해결',
+    items: ['변기 막힘해결', '싱크대 막힘해결', '하수구 막힘해결', '세면대 막힘해결']
+  }
+};
+
+const selectedCats = { install: new Set(), cleaning: new Set(), drain: new Set() };
+
+// 카테고리 칩 렌더
+Object.keys(categories).forEach(catKey => {
+  const wrap = document.getElementById(catKey + 'Items');
+  categories[catKey].items.forEach(item => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'cat-chip';
+    chip.textContent = item;
+    chip.dataset.item = item;
+    chip.dataset.cat = catKey;
+    chip.onclick = () => toggleCatItem(catKey, item, chip);
+    wrap.appendChild(chip);
+  });
+});
+
+function toggleCatItem(catKey, item, chip) {
+  if (selectedCats[catKey].has(item)) {
+    selectedCats[catKey].delete(item);
+    chip.classList.remove('selected');
+  } else {
+    selectedCats[catKey].add(item);
+    chip.classList.add('selected');
+  }
+  updateCatHeader(catKey);
+}
+
+function toggleCatAll(catKey) {
+  const allItems = categories[catKey].items;
+  const allSelected = allItems.every(i => selectedCats[catKey].has(i));
+  if (allSelected) {
+    selectedCats[catKey].clear();
+  } else {
+    allItems.forEach(i => selectedCats[catKey].add(i));
+  }
+  // re-render chips
+  const wrap = document.getElementById(catKey + 'Items');
+  wrap.querySelectorAll('.cat-chip').forEach(chip => {
+    if (selectedCats[catKey].has(chip.dataset.item)) chip.classList.add('selected');
+    else chip.classList.remove('selected');
+  });
+  updateCatHeader(catKey);
+}
+
+function updateCatHeader(catKey) {
+  const count = selectedCats[catKey].size;
+  const total = categories[catKey].items.length;
+  const badge = document.getElementById(catKey + 'Badge');
+  const check = document.getElementById(catKey + 'HeaderCheck');
+  badge.textContent = count === 0 ? '0개 선택' : count + '개 선택';
+  badge.className = 'cat-header-badge' + (count > 0 ? ' active' : '');
+  if (count === total && total > 0) { check.classList.add('checked'); }
+  else { check.classList.remove('checked'); }
+}
+
+function getTotalSelectedCats() {
+  return Object.values(selectedCats).reduce((acc, s) => acc + s.size, 0);
+}
+
+function getSelectedCatsText() {
+  const lines = [];
+  Object.keys(categories).forEach(catKey => {
+    if (selectedCats[catKey].size > 0) {
+      lines.push('[' + categories[catKey].label + '] ' + [...selectedCats[catKey]].join(', '));
+    }
+  });
+  return lines.join(' / ');
+}
+
+// 지역 데이터
 const regionData = {
   "서울": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
   "경기": ["가평군","고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","양평군","여주시","연천군","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시"],
@@ -220,20 +386,15 @@ const selectedTagsEl = document.getElementById('selectedTags');
 
 Object.keys(regionData).forEach(sido => {
   const btn = document.createElement('button');
-  btn.className = 'sido-tab';
-  btn.textContent = sido;
-  btn.type = 'button';
+  btn.className = 'sido-tab'; btn.textContent = sido; btn.type = 'button';
   btn.onclick = () => selectSido(sido, btn);
   sidoTabsEl.appendChild(btn);
 });
 
 function selectSido(sido, btn) {
   document.querySelectorAll('.sido-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  activeSido = sido;
-  renderSigungu(sido);
+  btn.classList.add('active'); activeSido = sido; renderSigungu(sido);
 }
-
 function renderSigungu(sido) {
   sigunguGrid.innerHTML = '';
   regionData[sido].forEach(gu => {
@@ -246,15 +407,11 @@ function renderSigungu(sido) {
     sigunguGrid.appendChild(chip);
   });
 }
-
 function toggleRegion(key, sido) {
   const idx = selectedRegions.indexOf(key);
-  if (idx > -1) selectedRegions.splice(idx, 1);
-  else selectedRegions.push(key);
-  renderSigungu(sido);
-  renderTags();
+  if (idx > -1) selectedRegions.splice(idx, 1); else selectedRegions.push(key);
+  renderSigungu(sido); renderTags();
 }
-
 function renderTags() {
   selectedTagsEl.innerHTML = '';
   selectedRegions.forEach(key => {
@@ -264,18 +421,14 @@ function renderTags() {
     selectedTagsEl.appendChild(tag);
   });
 }
-
 function removeTag(key) {
   selectedRegions = selectedRegions.filter(r => r !== key);
-  if (activeSido) renderSigungu(activeSido);
-  renderTags();
+  if (activeSido) renderSigungu(activeSido); renderTags();
 }
 
 function selectSurvey(el, val) {
   document.querySelectorAll('.radio-item').forEach(r => r.classList.remove('selected'));
-  el.classList.add('selected');
-  el.querySelector('input[type="radio"]').checked = true;
-  selectedSurvey = val;
+  el.classList.add('selected'); el.querySelector('input[type="radio"]').checked = true; selectedSurvey = val;
 }
 
 async function handleSubmit() {
@@ -286,6 +439,12 @@ async function handleSubmit() {
     if (!el.value.trim()) { el.classList.add('error'); valid = false; }
     else el.classList.remove('error');
   });
+  if (getTotalSelectedCats() === 0) {
+    document.getElementById('catError').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('catError').classList.remove('show');
+  }
   if (selectedRegions.length === 0) { alert('관할 지역을 1개 이상 선택해주세요.'); valid = false; }
   if (!selectedSurvey) { alert('현재 사업 현황을 선택해주세요.'); valid = false; }
   if (!valid) return;
@@ -305,6 +464,7 @@ async function handleSubmit() {
     title: document.getElementById('jobTitle').value,
     phone: document.getElementById('phone').value,
     headcount: document.getElementById('headcount').value,
+    categories: getSelectedCatsText(),
     regions: selectedRegions.join(', '),
     unavailable: document.getElementById('unavailable').value,
     survey: surveyMap[selectedSurvey] || ''
@@ -312,8 +472,7 @@ async function handleSubmit() {
 
   try {
     await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
+      method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
@@ -322,7 +481,7 @@ async function handleSubmit() {
   } catch(err) {
     alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
     btn.disabled = false;
-    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 상담 신청하기';
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> 지원 신청하기';
   }
 }
 </script>
